@@ -10,7 +10,7 @@ export function Inject(
 ): ParameterDecorator {
     return (
         target: any,
-        propertyKey: string | symbol,
+        propertyKey: string | symbol | undefined,
         parameterIndex: number
     ) => {
         injectorStore.registerInjector({

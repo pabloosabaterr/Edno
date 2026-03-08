@@ -8,7 +8,7 @@ import { ParamTypes } from "../types";
 export function Param(details?: string): ParameterDecorator {
     return (
         target: object,
-        propertyKey: string | symbol,
+        propertyKey: string | symbol | undefined,
         parameterIndex: number
     ) => {
         parameterStore.registerParameter({
@@ -16,7 +16,7 @@ export function Param(details?: string): ParameterDecorator {
             value: undefined,
             type: ParamTypes.PARAM,
             index: parameterIndex,
-            propertyKey: propertyKey.toString(),
+            propertyKey: propertyKey?.toString() || "constructor",
             target: target.constructor.name,
         });
     };
@@ -29,7 +29,7 @@ export function Param(details?: string): ParameterDecorator {
 export function Body(details?: string): ParameterDecorator {
     return (
         target: object,
-        propertyKey: string | symbol,
+        propertyKey: string | symbol | undefined,
         parameterIndex: number
     ) => {
         parameterStore.registerParameter({
@@ -37,7 +37,7 @@ export function Body(details?: string): ParameterDecorator {
             value: undefined,
             type: ParamTypes.BODY,
             index: parameterIndex,
-            propertyKey: propertyKey.toString(),
+            propertyKey: propertyKey?.toString() || "constructor",
             target: target.constructor.name,
         });
     };
@@ -49,7 +49,7 @@ export function Body(details?: string): ParameterDecorator {
 export function Next(): ParameterDecorator {
     return (
         target: object,
-        propertyKey: string | symbol,
+        propertyKey: string | symbol | undefined,
         parameterIndex: number
     ) => {
         parameterStore.registerParameter({
@@ -57,7 +57,7 @@ export function Next(): ParameterDecorator {
             value: undefined,
             type: ParamTypes.NEXT,
             index: parameterIndex,
-            propertyKey: propertyKey.toString(),
+            propertyKey: propertyKey?.toString() || "constructor",
             target: target.constructor.name,
         });
     };
@@ -66,7 +66,7 @@ export function Next(): ParameterDecorator {
 export function Headers(details?: string): ParameterDecorator {
     return (
         target: object,
-        propertyKey: string | symbol,
+        propertyKey: string | symbol | undefined,
         parameterIndex: number
     ) => {
         parameterStore.registerParameter({
@@ -74,7 +74,7 @@ export function Headers(details?: string): ParameterDecorator {
             value: undefined,
             type: ParamTypes.HEADER,
             index: parameterIndex,
-            propertyKey: propertyKey.toString(),
+            propertyKey: propertyKey?.toString() || "constructor",
             target: target.constructor.name,
         });
     };
